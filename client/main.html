@@ -1,0 +1,16 @@
+<head>
+  <title>where-to-go</title>
+</head>
+
+<body>
+  {{> map}}
+</body>
+
+<template name="map">
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
+  {{#each venues}}
+  	<div>{{name}}  {{lat}}  {{lng}}</div>
+  {{/each}}
+</template>
