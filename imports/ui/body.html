@@ -1,0 +1,63 @@
+<body>
+   <header>
+   	<div align="right">{{> loginButtons}}</div>
+   </header>
+  {{> map}}
+
+</body>
+
+<template name="map">
+{{#if currentUser}}
+    <input type="text" id="txt" name="search"/>
+    <input type="button" value="Пошук" class="submit" />
+    <input type="button" value="Очичтити" class="clear" />
+    <input type="button" value="Історія пошуку" class="querys">
+    <input type="button" value="Очистити історію" class="deleteHistory">
+  {{#if showHistory}}
+    <table border="1" align="left">
+       <thead>
+      <tr>
+        <th>запит</th>
+        <th>дата</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each history}}
+     <tr>
+        <th>{{text}}</th>
+        <th>{{createdAt}}</th>  
+     </tr>
+   {{/each}}
+   </tbody>
+   </table>
+  {{/if}}
+{{/if}}  
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
+{{#if currentUser}}   
+  <table border="1" align="left">
+    <thead>
+      <tr>
+        <th>назва</th>
+        <th>lat</th>
+        <th>lng</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each venues}}
+      <tr> 
+        <td>{{name}}</td>
+        <td>{{lat}}</td>
+        <td>{{lng}}</td>
+      </tr>
+      {{/each}}
+    </tbody> 
+  </table>
+{{/if}}
+
+
+</template>
+
+
+
